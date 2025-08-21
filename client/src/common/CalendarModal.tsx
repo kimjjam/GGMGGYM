@@ -1,6 +1,6 @@
 // client/src/components/common/CalendarModal.tsx
 import { useEffect, useMemo, useState } from "react";
-import { workoutLogsApi, type Workout, type CalendarDaySummary } from "../../lib/api";
+import { workoutLogsApi, type Workout, type CalendarDaySummary } from "../lib/api";
 
 type Group = Workout["group"]; // "back" | "shoulder" | "chest" | "arm" | "legs" | "cardio"
 

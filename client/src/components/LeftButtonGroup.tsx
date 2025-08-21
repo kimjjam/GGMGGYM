@@ -1,6 +1,7 @@
+// client/src/components/LeftButtonGroup.tsx
 import React from "react";
+import type { ButtonName } from "../constants";
 
-type ButtonName = "득근캘린더" | "몽글이뱃지";
 
 export type GroupProps = {
   onClick: (name: ButtonName) => void;
@@ -12,6 +13,9 @@ export type GroupProps = {
 const buttonImageSrc: Record<ButtonName, string> = {
   "득근캘린더": "../images/calendarbtn.png",
   "몽글이뱃지": "../images/badgebtn.png",
+  "일기": "../images/diarybtn.png",
+  "운동검색": "../images/searchbtn.png",
+  "체중계": "../images/scalebtn.png",
 };
 
 export default function LeftButtonGroup({
@@ -21,6 +25,7 @@ export default function LeftButtonGroup({
   maxSize,
 }: GroupProps) {
   const buttons: ButtonName[] = ["득근캘린더", "몽글이뱃지"];
+
   const sizeStyle: React.CSSProperties = {
     width: buttonSize,
     height: buttonSize,
@@ -61,7 +66,7 @@ export default function LeftButtonGroup({
       {buttons.map((name) => (
         <button
           key={name}
-          onClick={() => onClick?.(name)}
+          onClick={() => onClick(name)}
           aria-label={name}
           type="button"
           style={sizeStyle}

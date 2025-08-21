@@ -1,8 +1,17 @@
-import React from "react";
+// client/src/pages/MyRoutine.tsx
+import React, { type CSSProperties } from "react";
 import ExerciseCard, { RoutineItem } from "../components/workout/ExerciseCard";
-import { C } from "./constants";
+import { C } from "../constants";
 
-export const routineStyles = {
+
+
+export const routineStyles: {
+  header: CSSProperties;
+  title: CSSProperties;
+  addBtn: CSSProperties;
+  emptyMsg: CSSProperties;
+  grid: CSSProperties;
+} = {
   header: {
     display: "flex",
     justifyContent: "space-between",
@@ -26,7 +35,7 @@ export const routineStyles = {
   emptyMsg: {
     color: C.mute,
     fontSize: 14,
-    textAlign: "center",
+    textAlign: "center", // 리터럴로 지정해 타입 오류 방지
     padding: "16px 0",
   },
   grid: {
@@ -43,7 +52,12 @@ type Props = {
   onOpenPicker: () => void;
 };
 
-export default function MyRoutine({ routine, setRoutine, mode, onOpenPicker }: Props) {
+export default function MyRoutine({
+  routine,
+  setRoutine,
+  mode,
+  onOpenPicker,
+}: Props) {
   return (
     <section>
       <div style={routineStyles.header}>
@@ -67,8 +81,12 @@ export default function MyRoutine({ routine, setRoutine, mode, onOpenPicker }: P
             <ExerciseCard
               key={`${item.id}-${i}`}
               item={item}
-              onChange={(newItem) => setRoutine((rs) => rs.map((x, idx) => (idx === i ? newItem : x)))}
-              onRemove={() => setRoutine((rs) => rs.filter((_, idx) => idx !== i))}
+              onChange={(newItem) =>
+                setRoutine((rs) => rs.map((x, idx) => (idx === i ? newItem : x)))
+              }
+              onRemove={() =>
+                setRoutine((rs) => rs.filter((_, idx) => idx !== i))
+              }
             />
           ))}
         </div>

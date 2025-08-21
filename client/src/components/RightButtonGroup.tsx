@@ -1,11 +1,15 @@
+// client/src/components/RightButtonGroup.tsx
+import type { CSSProperties } from 'react';
 import type { GroupProps } from './LeftButtonGroup';
+import type { ButtonName } from "../constants";
 
-type ButtonName = '일기' | '운동검색' | '체중계';
 
 const buttonImageSrc: Record<ButtonName, string> = {
   '일기': '../images/diarybtn.png',
   '운동검색': '../images/searchbtn.png',
   '체중계': '../images/weightbtn.png',
+  '득근캘린더': '../images/calendarbtn.png', // Add appropriate image path
+  '몽글이뱃지': '../images/badgebtn.png',    // Add appropriate image path
 };
 
 type RightButtonGroupProps = GroupProps & {
@@ -24,7 +28,7 @@ export default function RightButtonGroup({
 }: RightButtonGroupProps) {
   const buttons: ButtonName[] = ['일기', '운동검색', '체중계'];
 
-  const sizeStyle: React.CSSProperties = {
+  const sizeStyle: CSSProperties = {
     width: buttonSize,
     height: buttonSize,
     minWidth: minSize ? `${minSize}px` : undefined,
@@ -32,16 +36,16 @@ export default function RightButtonGroup({
     maxWidth: maxSize ? `${maxSize}px` : undefined,
     maxHeight: maxSize ? `${maxSize}px` : undefined,
     padding: 0,
-    border: 'none', // 테두리 제거
-    background: 'transparent', // 배경 제거
+    border: 'none',
+    background: 'transparent',
     cursor: 'pointer',
     display: 'flex',
-    flexDirection: 'column', // 세로 정렬
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   };
 
-  const textStyle: React.CSSProperties = {
+  const textStyle: CSSProperties = {
     marginTop: 4,
     color: '#1F2F2C',
     fontWeight: 600,
