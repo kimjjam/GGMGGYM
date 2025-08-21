@@ -1,0 +1,250 @@
+
+:root{
+  --ink:#7e7058; --paper:#f7ecd2; --paper-light:#fffaf0;
+  --line:#ffae00; --card:#ffffff; --shadow:0 10px 24px rgba(0,0,0,.08);
+  --mint:#9bd5cf;
+}
+/* Backdrop & Modal shell */
+.backdrop{
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.35);
+  display: grid; place-items: center; z-index: 1000;
+}
+.modal{
+  width: min(1100px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+  overflow: auto;
+  padding: 18px;
+  border-radius: 20px;
+  background:
+    repeating-linear-gradient(to bottom, var(--paper) 0px, var(--paper) 38px, var(--line) 39px, var(--paper) 40px);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  font-family: 'GoryeongStrawberry', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  z-index: 1000;
+}
+/* [추가] 모달 내부 텍스트가 전역 스타일에 가려지지 않도록 고정 */
+.modal *{
+  color: inherit;
+  -webkit-text-fill-color: currentColor; /* Chrome/Safari에서 색 보장 */
+  /* 전역에 background-clip:text; color:transparent;가 있다면 아래 두 줄 주석 해제
+  background: none !important;
+  -webkit-background-clip: initial !important; background-clip: initial !important;
+  */
+}
+/* Hero */
+.hero{
+  position: relative;
+  background: linear-gradient(180deg, var(--paper-light), var(--paper));
+  border: 2px solid var(--line); border-radius: 22px;
+  padding: 22px 18px; box-shadow: var(--shadow); margin-bottom: 18px;
+}
+.h1{ margin: 0; font-size: 38px; letter-spacing: .5px; }
+.meta{ display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+.pill{
+  background:#ffffff; border:2px solid var(--line); padding:8px 12px; border-radius:999px; box-shadow:var(--shadow);
+  display:flex; align-items:center; gap:8px;
+}
+.closeBtn{
+  margin-left: auto;
+  border:2px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  padding:6px 10px;
+  cursor:pointer;
+  /* X 색상 여기서 지정 */
+  color: red;                 /* 필요 시 #FF5A5F 처럼 원하는 색으로 변경 */
+  -webkit-text-fill-color: red;
+  font-weight:800;
+  line-height:1;
+}
+/* 1) '운동 시작일' 라벨/입력 가독성 강화 */
+.pill label{
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+.pill input[type="date"]{
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+  background: #fff;
+  color-scheme: light;          /* 다크모드에서도 흰 배경/진한 글자 유지 */
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 2px solid var(--line);
+}
+/* 캘린더 아이콘도 보이게 */
+.pill input[type="date"]::-webkit-calendar-picker-indicator{
+  filter: none;
+  opacity: .9;
+}
+/* 2) '저장' 버튼 글자 흰색 */
+.pill button{
+  background: #1F1F1F;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 800;
+}
+/* 3) 닫기 버튼 둥글둥글 + 색 유지(빨강) */
+.closeBtn{
+  width: 40px; height: 40px;
+  border-radius: 999px;               /* 완전 동그라미 */
+  display: grid; place-items: center; /* 가운데 정렬 */
+  border: 2px solid var(--line);
+  background: #fff;
+  color: red;                          /* 원하던 색 유지 */
+  -webkit-text-fill-color: red;
+  font-size: 20px; font-weight: 700; line-height: 1;
+}
+.closeBtn:hover,
+.closeBtn:focus{
+  background: rgba(255, 174, 0, 0.08);
+  outline: none;
+}
+.closeBtn:hover,
+.closeBtn:focus{
+  background: rgba(255, 174, 0, 0.08); /* 살짝 하이라이트 */
+  outline: none;
+}
+.closeBtn{
+  margin-left: auto;
+  border:2px solid var(--line); background:#fff; border-radius:10px; padding:6px 10px; cursor:pointer;
+}
+/* Box sections */
+.box{
+  background:var(--card); border:2px solid var(--line); border-radius:22px; padding:20px;
+  box-shadow:var(--shadow); backdrop-filter:blur(1px); margin-bottom:22px;
+}
+.h2{ margin:0 0 12px; font-size:28px; }
+.minis{
+  background:var(--card); border:2px solid var(--line);
+  border-radius:20px; padding:18px; box-shadow:var(--shadow);
+}
+/* Badge grid */
+.badgeGrid{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns: 200px;
+  gap:18px;
+  overflow-x:auto;
+  padding-bottom:8px;
+  -webkit-overflow-scrolling:touch;
+}
+.badge{
+  height:300px;
+  display:flex; flex-direction:column; align-items:center; position: relative;
+  border:2px solid var(--line); border-radius:20px; background:#fff;
+  box-shadow:var(--shadow); padding:14px 12px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.badge:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(0,0,0,.12); }
+.thumb{ width:150px; height:170px; display:grid; place-items:center; overflow:hidden; }
+.thumb img{ width:100%; height:100%; object-fit:contain; display:block; }
+.hint{ min-height:24px; font-size:16px; opacity:.85; margin-top:6px; }
+.progress{ width:100%; height:8px; border-radius:7px; background:#eee; overflow:hidden; margin-top:auto; }
+.progress i{ display:block; height:100%; width:0; background:var(--mint); }
+.locked .thumb img{ filter:grayscale(1) blur(1px) opacity(.45); }
+.locked::after{
+  content:'잠금'; position:absolute; right:10px; bottom:10px; font-size:18px; opacity:.95;
+}
+/* Minis */
+.miniToolbar{ display:flex; gap:10px; align-items:center; margin-bottom:12px; flex-wrap:wrap; z-index: 50;}
+.miniToolbar button{
+  font-family:inherit; font-size:18px; border:2px solid var(--line);
+  background:#fff; padding:8px 14px; border-radius:14px; cursor:pointer;
+  /* [추가] 버튼 라벨 보이도록 */
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+.miniGrid{
+  display:grid; gap:14px; grid-template-columns:repeat(auto-fit, minmax(110px,1fr));
+}
+.slot{
+  border:2px dashed var(--line); border-radius:16px; height:120px;
+  background:#fff; display:grid; place-items:center; position:relative;
+}
+.slot img{ max-width:90%; max-height:90%; transition:.2s; }
+.slot.locked::after{ content:'?'; font-size:36px; color:#6d6d6d; }
+/* Toast */
+.toast{
+  position:fixed; left:50%; bottom:24px; transform:translateX(-50%);
+  background:#222; color:#fff; border-radius:12px; padding:10px 14px;
+  font-size:18px; opacity:0; pointer-events:none; transition:.3s;
+}
+.show{ opacity:1; }
+
+/* 슬롯을 클릭 가능하게 */
+.slot:not(.locked){ cursor: zoom-in; }
+
+/* 미리보기 오버레이 */
+.viewerBackdrop{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 9999;
+  display:flex; align-items:center; justify-content:center;
+  padding: 24px;
+}
+
+.viewerModal{
+  position: relative;
+  max-width: min(92vw, 880px);
+  width: fit-content;
+  max-height: 92vh;
+  background: #fffaf0;
+  border: 1px solid #ead9b6;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.18);
+  padding: 12px 16px 16px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  gap: 8px;
+}
+
+.viewerImg{
+  max-width: 86vw;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.viewerCaption{
+  text-align: center;
+  font-weight: 700;
+  color: #7a6b56;
+}
+
+/* 닫기/이전/다음 */
+.viewerClose{
+  position:absolute; top:8px; right:10px;
+  width:36px; height:36px; border-radius:999px;
+  background:#fff; border:1px solid #ead9b6;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  cursor:pointer; font-size:18px; line-height:34px;
+}
+
+.navBtn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:40px; height:56px; border-radius:10px;
+  background:#fff; border:1px solid #ead9b6; cursor:pointer;
+  box-shadow: 0 4px 18px rgba(0,0,0,.12);
+  font-size:28px; line-height:52px;
+  display:flex; align-items:center; justify-content:center;
+}
+.navBtn:hover{ background:#fff6df; }
+.prev{ left:8px; }
+.next{ right:8px; }
+
+/* 예: BadgeMiniModal.module.css에 있어야 할 핵심 */
+.viewerBackdrop { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 9999;
+  display: flex; align-items: center; justify-content: center; padding: 24px; }
+.viewerModal { position: relative; max-width: min(92vw, 880px); max-height: 92vh;
+  background: #fffaf0; border: 1px solid #ead9b6; border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.18); padding: 12px 16px 16px; }
+.viewerImg { max-width: 86vw; max-height: 72vh; object-fit: contain; border-radius: 12px; }
+.navBtn { position: absolute; top: 50%; transform: translateY(-50%); }
+.prev { left: 8px; } .next { right: 8px; }
+.slot:not(.locked) { cursor: zoom-in; }
