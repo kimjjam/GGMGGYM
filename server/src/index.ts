@@ -49,7 +49,21 @@ app.use(morgan("dev"));
 /* =========================
    Health Check
    ========================= */
+// Render Health Check 용 (GET/HEAD 모두 200)
+app.get("/health", (_req, res) =>
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  })
+);
+app.head("/health", (_req, res) => res.sendStatus(200));
+
+// 기존 내부용(이미 쓰고 있으면 계속 사용 가능)
 app.get("/api/health", (_req, res) => res.json({ status: "ok" }));
+
+// 선택: 루트 접근 시 OK (원치 않으면 지워도 됨)
+app.get("/", (_req, res) => res.status(200).send("OK"));
 
 /* =========================
    Routers
