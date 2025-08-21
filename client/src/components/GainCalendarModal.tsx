@@ -515,7 +515,7 @@ export default function GainCalendarModal({ isOpen, onClose }: GainCalendarModal
       >
         {/* 왼쪽 데코 */}
         <img
-          src="../../public/images/mongleleft.png"
+          src="/images/mongleleft.png"
           alt="캘린더 모달 데코"
           style={{
             position: "absolute",
